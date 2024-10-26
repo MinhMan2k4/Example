@@ -59,5 +59,15 @@ namespace Example.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _0ab9268e_9d32_475d_98fc_64cbaa56105b {
+            get {
+                object obj = ResourceManager.GetObject("0ab9268e-9d32-475d-98fc-64cbaa56105b", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

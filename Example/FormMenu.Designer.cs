@@ -50,6 +50,10 @@
             button20 = new Button();
             button21 = new Button();
             button22 = new Button();
+            button23 = new Button();
+            button24 = new Button();
+            button25 = new Button();
+            button26 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -272,11 +276,55 @@
             button22.UseVisualStyleBackColor = true;
             button22.Click += button22_Click;
             // 
+            // button23
+            // 
+            button23.Location = new Point(535, 188);
+            button23.Name = "button23";
+            button23.Size = new Size(75, 23);
+            button23.TabIndex = 22;
+            button23.Text = "QLSV";
+            button23.UseVisualStyleBackColor = true;
+            button23.Click += button23_Click;
+            // 
+            // button24
+            // 
+            button24.Location = new Point(656, 188);
+            button24.Name = "button24";
+            button24.Size = new Size(75, 23);
+            button24.TabIndex = 23;
+            button24.Text = "DSSV";
+            button24.UseVisualStyleBackColor = true;
+            button24.Click += button24_Click;
+            // 
+            // button25
+            // 
+            button25.Location = new Point(49, 236);
+            button25.Name = "button25";
+            button25.Size = new Size(75, 23);
+            button25.TabIndex = 24;
+            button25.Text = "DSGV";
+            button25.UseVisualStyleBackColor = true;
+            button25.Click += button25_Click;
+            // 
+            // button26
+            // 
+            button26.Location = new Point(170, 236);
+            button26.Name = "button26";
+            button26.Size = new Size(75, 23);
+            button26.TabIndex = 25;
+            button26.Text = "DSMH";
+            button26.UseVisualStyleBackColor = true;
+            button26.Click += button26_Click;
+            // 
             // FormMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button26);
+            Controls.Add(button25);
+            Controls.Add(button24);
+            Controls.Add(button23);
             Controls.Add(button22);
             Controls.Add(button19);
             Controls.Add(button20);
@@ -328,5 +376,9 @@
         private Button button20;
         private Button button21;
         private Button button22;
+        private Button button23;
+        private Button button24;
+        private Button button25;
+        private Button button26;
     }
 }

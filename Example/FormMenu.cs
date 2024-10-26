@@ -148,5 +148,29 @@ namespace Example
             Login login = new Login();
             login.Show();
         }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            QLSV qLSV = new QLSV();
+            qLSV.Show();
+        }
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+            DSSV dSSV = new DSSV();
+            dSSV.Show();
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+            DSGV dSGV = new DSGV();
+            dSGV.Show();
+        }
+
+        private void button26_Click(object sender, EventArgs e)
+        {
+            DSMH dSMH = new DSMH();
+            dSMH.Show();
+        }
     }
 }
