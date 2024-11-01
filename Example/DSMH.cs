@@ -15,22 +15,58 @@ namespace Example
         public DSMH()
         {
             InitializeComponent();
+            CustomizeComponents();
         }
 
-        private void dgvDSMH_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if(e.RowIndex>=0)
-            {
-                var mamh = dgvDSMH.Rows[e.RowIndex].Cells["mamonhoc"].Value.ToString();
-                new MonHoc(mamh).ShowDialog();
-                LoadDSMH();
-            }    
-        }
         private string tukhoa = "";
         private void btnThemmoi_Click(object sender, EventArgs e)
         {
             new MonHoc(null).ShowDialog();
             LoadDSMH();
+        }
+
+        private void CustomizeComponents()
+        {
+            // Đặt màu nền cho form
+            this.BackColor = Color.FromArgb(240, 250, 255);
+
+            // Cài đặt DataGridView
+            dgvDSMH.BorderStyle = BorderStyle.None;
+            dgvDSMH.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 255, 250);
+            dgvDSMH.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvDSMH.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 128, 255);
+            dgvDSMH.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dgvDSMH.BackgroundColor = Color.White;
+
+            dgvDSMH.EnableHeadersVisualStyles = false;
+            dgvDSMH.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvDSMH.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(64, 116, 204);
+            dgvDSMH.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            // Tùy chỉnh font chữ cho DataGridView
+            dgvDSMH.Font = new Font("Arial", 10);
+            dgvDSMH.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Bold);
+
+            // Tùy chỉnh các nút
+            CustomizeButton(btnThemmoi, "Thêm mới");
+            CustomizeButton(btnTimkiem, "Tìm kiếm");
+            CustomizeButton(btnSua, "Sửa");
+
+            // Đặt placeholder cho TextBox tìm kiếm
+            txtTukhoa.Font = new Font("Arial", 10);
+            txtTukhoa.PlaceholderText = "Nhập từ khóa...";
+        }
+
+        private void CustomizeButton(Button button, string text)
+        {
+            button.Text = text;
+            button.BackColor = Color.FromArgb(80, 160, 155);
+            button.ForeColor = Color.White;
+            button.FlatStyle = FlatStyle.Flat;
+            button.FlatAppearance.BorderSize = 0;
+            button.Width = 100;
+            button.Height = 35;
+            button.Font = new Font("Arial", 10, FontStyle.Bold);
         }
         private void LoadDSMH()
         {
@@ -56,6 +92,16 @@ namespace Example
         {
             tukhoa = txtTukhoa.Text;
             LoadDSMH();
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (dgvDSMH.CurrentRow != null)
+            {
+                var mmh = dgvDSMH.CurrentRow.Cells["mamonhoc"].Value.ToString();
+                new LopHoc(mmh).ShowDialog();
+                LoadDSMH();
+            }
         }
     }
 }

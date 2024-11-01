@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -73,7 +74,20 @@ namespace Example
             string diachi = txtDiachi.Text;
             string dienthoai = txtDienthoai.Text;
             string email = txtEmail.Text;
+            if (!long.TryParse(dienthoai, out _))
+            {
+                MessageBox.Show("Số điện thoại chỉ được chứa ký tự số.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtDienthoai.Select();
+                return;
+            }
+            if (!IsValidEmail(email))
+            {
+                MessageBox.Show("Địa chỉ email không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtEmail.Select();
+                return;
+            }
             List<CustomParameter> lstPara = new List<CustomParameter>();
+
             if (string.IsNullOrEmpty(msv))
             {
                 sql = "ThemMoiSV";
@@ -151,6 +165,12 @@ namespace Example
             {
                 MessageBox.Show("thực thi thất bại");
             }
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            return Regex.IsMatch(email, emailPattern);
         }
 
         private void button2_Click(object sender, EventArgs e)

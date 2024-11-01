@@ -6,8 +6,10 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Example
 {
@@ -45,6 +47,25 @@ namespace Example
         private void btnLuu_Click(object sender, EventArgs e)
         {
             string sql = "";
+            string ho = txtHo.Text;
+            string tendem = txtTendem.Text;
+            string ten = txtTen.Text;
+            string gioitinh = rbtNam.Checked ? "1" : "0";
+            string diachi = txtDiachi.Text;
+            string dienthoai = txtDienthoai.Text;
+            string email = txtEmail.Text;
+            if (!long.TryParse(dienthoai, out _))
+            {
+                MessageBox.Show("Số điện thoại chỉ được chứa ký tự số.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtDienthoai.Select();
+                return;
+            }
+            if (!IsValidEmail(email))
+            {
+                MessageBox.Show("Địa chỉ email không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtEmail.Select();
+                return;
+            }
             List<CustomParameter> lstPara = new List<CustomParameter>();
             DateTime ngaysinh;
             try
@@ -138,6 +159,12 @@ namespace Example
             {
                 MessageBox.Show("Thực thi truy vấn thất bại");
             }
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            return Regex.IsMatch(email, emailPattern);
         }
 
         private void button2_Click(object sender, EventArgs e)

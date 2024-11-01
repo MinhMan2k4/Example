@@ -33,6 +33,7 @@
             txtTukhoa = new TextBox();
             btnTimkiem = new Button();
             btnThemmoi = new Button();
+            btnSuaSV = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvSinhVien).BeginInit();
             SuspendLayout();
             // 
@@ -50,13 +51,12 @@
             dgvSinhVien.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvSinhVien.Size = new Size(800, 366);
             dgvSinhVien.TabIndex = 0;
-            dgvSinhVien.CellDoubleClick += dgvSinhVien_CellDoubleClick;
             // 
             // label1
             // 
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label1.AutoSize = true;
-            label1.Location = new Point(363, 28);
+            label1.Location = new Point(239, 30);
             label1.Name = "label1";
             label1.Size = new Size(49, 15);
             label1.TabIndex = 1;
@@ -65,7 +65,7 @@
             // txtTukhoa
             // 
             txtTukhoa.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            txtTukhoa.Location = new Point(418, 25);
+            txtTukhoa.Location = new Point(325, 23);
             txtTukhoa.Name = "txtTukhoa";
             txtTukhoa.Size = new Size(164, 23);
             txtTukhoa.TabIndex = 2;
@@ -73,7 +73,7 @@
             // btnTimkiem
             // 
             btnTimkiem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnTimkiem.Location = new Point(588, 24);
+            btnTimkiem.Location = new Point(495, 22);
             btnTimkiem.Name = "btnTimkiem";
             btnTimkiem.Size = new Size(75, 23);
             btnTimkiem.TabIndex = 3;
@@ -84,7 +84,7 @@
             // btnThemmoi
             // 
             btnThemmoi.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnThemmoi.Location = new Point(669, 25);
+            btnThemmoi.Location = new Point(605, 22);
             btnThemmoi.Name = "btnThemmoi";
             btnThemmoi.Size = new Size(75, 23);
             btnThemmoi.TabIndex = 4;
@@ -92,11 +92,23 @@
             btnThemmoi.UseVisualStyleBackColor = true;
             btnThemmoi.Click += btnThemmoi_Click;
             // 
+            // btnSuaSV
+            // 
+            btnSuaSV.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnSuaSV.Location = new Point(713, 22);
+            btnSuaSV.Name = "btnSuaSV";
+            btnSuaSV.Size = new Size(75, 23);
+            btnSuaSV.TabIndex = 5;
+            btnSuaSV.Text = "Sửa";
+            btnSuaSV.UseVisualStyleBackColor = true;
+            btnSuaSV.Click += btnSuaSV_Click;
+            // 
             // DSSV
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnSuaSV);
             Controls.Add(btnThemmoi);
             Controls.Add(btnTimkiem);
             Controls.Add(txtTukhoa);
@@ -118,5 +130,6 @@
         private TextBox txtTukhoa;
         private Button btnTimkiem;
         private Button btnThemmoi;
+        private Button btnSuaSV;
     }
 }

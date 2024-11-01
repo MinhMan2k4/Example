@@ -15,9 +15,35 @@ namespace Example
         public QLSV()
         {
             InitializeComponent();
+            CustomizeComponents();
         }
         private string taikhoan;
         private string loaitk;
+
+        private void CustomizeComponents()
+        {
+            // Đặt màu nền cho form chính
+            this.BackColor = Color.FromArgb(240, 250, 255);
+
+            // Tùy chỉnh menu strip
+            menuStrip1.BackColor = Color.FromArgb(64, 116, 204);
+            menuStrip1.ForeColor = Color.White;
+
+            // Tùy chỉnh các item trong menu strip
+            foreach (ToolStripMenuItem item in menuStrip1.Items)
+            {
+                item.BackColor = Color.FromArgb(64, 116, 204);
+                item.ForeColor = Color.White;
+            }
+
+            // Tùy chỉnh panel chứa nội dung
+            pnlContent.BackColor = Color.White;
+            pnlContent.BorderStyle = BorderStyle.FixedSingle;
+
+            // Tùy chỉnh tiêu đề form
+            this.Text = "Quản Lý Sinh Viên";
+            this.Font = new Font("Arial", 12);
+        }
 
         private void QLSV_Load(object sender, EventArgs e)
         {
@@ -33,19 +59,19 @@ namespace Example
             loaitk = fn.loaitk;
             if (loaitk.Equals("admin"))
             {
-                chamDiemToolStripMenuItem.Visible = false;
-                dangKyToolStripMenuItem.Visible = false;
+                quanLyLopToolStripMenuItem.Visible = false;
+                chucNangToolStripMenuItem.Visible = false;
             }
             else
             {
                 quanLyToolStripMenuItem.Visible = false;
                 if (loaitk.Equals("gv"))
                 {
-                    dangKyToolStripMenuItem.Visible = false;
+                    chucNangToolStripMenuItem.Visible = false;
                 }
                 else
                 {
-                    chamDiemToolStripMenuItem.Visible = false;
+                    quanLyLopToolStripMenuItem.Visible = false;
                 }
             }
 
@@ -97,6 +123,19 @@ namespace Example
         private void dangKyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var f = new DsMHĐK(taikhoan);
+            AddForm(f);
+        }
+
+        private void traCuuDiemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var f = new KetQuaHocTap(taikhoan);
+            AddForm(f);
+
+        }
+
+        private void quanLyLopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var f = new QuanLyLop(taikhoan);
             AddForm(f);
         }
     }

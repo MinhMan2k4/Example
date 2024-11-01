@@ -15,11 +15,56 @@ namespace Example
         public DSLH()
         {
             InitializeComponent();
+            CustomizeComponents();
         }
         private string tukhoa = "";
         private void DSLH_Load(object sender, EventArgs e)
         {
             loadDSLH();
+        }
+
+        private void CustomizeComponents()
+        {
+            // Đặt màu nền cho form
+            this.BackColor = Color.FromArgb(230, 255, 240);
+
+            // Cài đặt DataGridView
+            dgvLopHoc.BorderStyle = BorderStyle.None;
+            dgvLopHoc.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(220, 255, 240);
+            dgvLopHoc.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvLopHoc.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 120, 215);
+            dgvLopHoc.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dgvLopHoc.BackgroundColor = Color.White;
+
+            dgvLopHoc.EnableHeadersVisualStyles = false;
+            dgvLopHoc.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvLopHoc.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(41, 128, 185);
+            dgvLopHoc.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            // Tùy chỉnh font chữ cho DataGridView
+            dgvLopHoc.Font = new Font("Arial", 10);
+            dgvLopHoc.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Bold);
+
+            // Tùy chỉnh các nút
+            CustomizeButton(btnThem, "Thêm mới");
+            CustomizeButton(btnTimKiem, "Tìm kiếm");
+            CustomizeButton(btnSua, "Sửa");
+
+            // Đặt placeholder cho TextBox tìm kiếm
+            txtTimKiem.Font = new Font("Arial", 10);
+            txtTimKiem.PlaceholderText = "Nhập từ khóa...";
+        }
+
+        private void CustomizeButton(Button button, string text)
+        {
+            button.Text = text;
+            button.BackColor = Color.FromArgb(80, 160, 155);
+            button.ForeColor = Color.White;
+            button.FlatStyle = FlatStyle.Flat;
+            button.FlatAppearance.BorderSize = 0;
+            button.Width = 100;
+            button.Height = 35;
+            button.Font = new Font("Arial", 10, FontStyle.Bold);
         }
         private void loadDSLH()
         {
@@ -33,6 +78,13 @@ namespace Example
                 }
             };
             dgvLopHoc.DataSource = new Database().SelectData(sql, lstPara);
+
+            dgvLopHoc.Columns["malophoc"].HeaderText = "Mã lớp học";
+            dgvLopHoc.Columns["gv"].HeaderText = "Giáo viên";
+            dgvLopHoc.Columns["tenmonhoc"].HeaderText = "Tên môn học";
+
+
+
         }
 
         private void btnTimKiem_Click(object sender, EventArgs e)
@@ -47,13 +99,14 @@ namespace Example
             loadDSLH();
         }
 
-        private void dgvLopHoc_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void btnSua_Click(object sender, EventArgs e)
         {
-            if(e.RowIndex >= 0)
+            if (dgvLopHoc.CurrentRow != null)
             {
-                new LopHoc(dgvLopHoc.Rows[e.RowIndex].Cells["malophoc"].Value.ToString()).ShowDialog();
+                var mlh = dgvLopHoc.CurrentRow.Cells["malophoc"].Value.ToString();
+                new LopHoc(mlh).ShowDialog();
                 loadDSLH();
-            }    
+            }
         }
     }
 }

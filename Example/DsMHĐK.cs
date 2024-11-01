@@ -38,7 +38,7 @@ namespace Example
 
         private void btnDangKy_Click(object sender, EventArgs e)
         {
-            new DangkyMonHoc(null).ShowDialog();
+            new DangkyMonHoc(masv).ShowDialog();
             LoadMonDKy();
         }
     }

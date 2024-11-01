@@ -20,8 +20,52 @@ namespace Example
         public string loaitk;
         private void DangNhap_Load(object sender, EventArgs e)
         {
+            // Đặt màu nền của form
+            this.BackColor = Color.FromArgb(240, 248, 255);
 
+            // Căn chỉnh và đặt font cho tiêu đề
+            Label lblTitle = new Label
+            {
+                Text = "Đăng Nhập",
+                Font = new Font("Arial", 16, FontStyle.Bold),
+                ForeColor = Color.FromArgb(0, 120, 215),
+                AutoSize = true,
+                Location = new Point((this.Width / 2) - 50, 20),
+                TextAlign = ContentAlignment.MiddleCenter
+            };
+            this.Controls.Add(lblTitle);
+
+            // Đặt font cho các textbox và button
+            txtTenDangNhap.Font = new Font("Arial", 12);
+            txtMatKhau.Font = new Font("Arial", 12);
+            cbbLoaiTaiKhoan.Font = new Font("Arial", 12);
+            btnDangNhap.Font = new Font("Arial", 12, FontStyle.Bold);
+            btnThoat.Font = new Font("Arial", 12, FontStyle.Bold);
+
+            // Đặt màu nền và bo tròn cho nút đăng nhập
+            btnDangNhap.BackColor = Color.FromArgb(0, 120, 215);
+            btnDangNhap.ForeColor = Color.White;
+            btnDangNhap.FlatStyle = FlatStyle.Flat;
+            btnDangNhap.FlatAppearance.BorderSize = 0;
+            btnDangNhap.Width = 100;
+            btnDangNhap.Height = 35;
+            btnDangNhap.Location = new Point((this.Width / 2) - 110, 200);
+
+            // Đặt màu nền và bo tròn cho nút thoát
+            btnThoat.BackColor = Color.Gray;
+            btnThoat.ForeColor = Color.White;
+            btnThoat.FlatStyle = FlatStyle.Flat;
+            btnThoat.FlatAppearance.BorderSize = 0;
+            btnThoat.Width = 100;
+            btnThoat.Height = 35;
+            btnThoat.Location = new Point((this.Width / 2) + 10, 200);
+
+            // Đặt màu viền cho textbox
+            txtTenDangNhap.BorderStyle = BorderStyle.FixedSingle;
+            txtMatKhau.BorderStyle = BorderStyle.FixedSingle;
+            cbbLoaiTaiKhoan.DropDownStyle = ComboBoxStyle.DropDownList;
         }
+
         public bool DangNhapThanhCong { get; private set; } = false;
 
 

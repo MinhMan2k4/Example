@@ -21,7 +21,57 @@ namespace Example
         private void DSSV_Load(object sender, EventArgs e)
         {
             LoadDSSV();
+
+            // Đặt màu nền cho form
+            this.BackColor = Color.FromArgb(230, 255, 240);
+
+            // Cài đặt DataGridView
+            dgvSinhVien.BorderStyle = BorderStyle.None;
+            dgvSinhVien.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(80, 160, 155);
+            dgvSinhVien.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvSinhVien.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 120, 215);
+            dgvSinhVien.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dgvSinhVien.BackgroundColor = Color.White;
+
+            dgvSinhVien.EnableHeadersVisualStyles = false;
+            dgvSinhVien.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvSinhVien.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(41, 128, 185);
+            dgvSinhVien.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            // Tùy chỉnh font chữ cho DataGridView
+            dgvSinhVien.Font = new Font("Arial", 10);
+            dgvSinhVien.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Bold);
+
+            // Tùy chỉnh các nút
+            btnThemmoi.BackColor = Color.FromArgb(80, 160, 155);
+            btnThemmoi.ForeColor = Color.White;
+            btnThemmoi.FlatStyle = FlatStyle.Flat;
+            btnThemmoi.FlatAppearance.BorderSize = 0;
+            btnThemmoi.Width = 100;
+            btnThemmoi.Height = 35;
+            btnThemmoi.Font = new Font("Arial", 10, FontStyle.Bold);
+
+            btnTimkiem.BackColor = Color.FromArgb(80, 160, 155);
+            btnTimkiem.ForeColor = Color.White;
+            btnTimkiem.FlatStyle = FlatStyle.Flat;
+            btnTimkiem.FlatAppearance.BorderSize = 0;
+            btnTimkiem.Width = 100;
+            btnTimkiem.Height = 35;
+            btnTimkiem.Font = new Font("Arial", 10, FontStyle.Bold);
+
+            btnSuaSV.BackColor = Color.FromArgb(80, 160, 155);
+            btnSuaSV.ForeColor = Color.White;
+            btnSuaSV.FlatStyle = FlatStyle.Flat;
+            btnSuaSV.FlatAppearance.BorderSize = 0;
+            btnSuaSV.Width = 100;
+            btnSuaSV.Height = 35;
+            btnSuaSV.Font = new Font("Arial", 10, FontStyle.Bold);
+
+            // Đặt placeholder cho TextBox tìm kiếm
+            txtTukhoa.Font = new Font("Arial", 10);
+            txtTukhoa.PlaceholderText = "Nhập từ khóa...";
         }
+
 
         private void LoadDSSV()
         {
@@ -44,16 +94,6 @@ namespace Example
             dgvSinhVien.Columns["email"].HeaderText = "Email";
         }
 
-        private void dgvSinhVien_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                var msv = dgvSinhVien.Rows[e.RowIndex].Cells["masinhvien"].Value.ToString();
-                new SinhVien(msv).ShowDialog();
-                LoadDSSV();
-            }
-        }
-
         private void btnThemmoi_Click(object sender, EventArgs e)
         {
             new SinhVien(null).ShowDialog();
@@ -65,5 +105,16 @@ namespace Example
             tukhoa = txtTukhoa.Text.Trim(); // Lấy giá trị từ TextBox và loại bỏ khoảng trắng thừa
             LoadDSSV(); // Gọi lại hàm LoadDSSV để tải lại dữ liệu theo từ khóa mới
         }
+
+        private void btnSuaSV_Click(object sender, EventArgs e)
+        {
+            if (dgvSinhVien.CurrentRow != null)
+            {
+                var msv = dgvSinhVien.CurrentRow.Cells["masinhvien"].Value.ToString();
+                new SinhVien(msv).ShowDialog();
+                LoadDSSV();
+            }
+        }
+
     }
 }

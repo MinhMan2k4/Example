@@ -93,7 +93,7 @@
             // 
             btnDangNhap.Location = new Point(79, 192);
             btnDangNhap.Name = "btnDangNhap";
-            btnDangNhap.Size = new Size(75, 23);
+            btnDangNhap.Size = new Size(117, 45);
             btnDangNhap.TabIndex = 4;
             btnDangNhap.Text = "Đăng nhập";
             btnDangNhap.UseVisualStyleBackColor = true;
@@ -103,7 +103,7 @@
             // 
             btnThoat.Location = new Point(177, 192);
             btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(75, 23);
+            btnThoat.Size = new Size(117, 45);
             btnThoat.TabIndex = 5;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
