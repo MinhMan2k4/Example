@@ -52,6 +52,14 @@ namespace Example
             CustomizeButton(btnTimkiem, "Tìm kiếm");
             CustomizeButton(btnSua, "Sửa");
 
+            btnXoaMH.BackColor = Color.FromArgb(255, 80, 80);
+            btnXoaMH.ForeColor = Color.White;
+            btnXoaMH.FlatStyle = FlatStyle.Flat;
+            btnXoaMH.FlatAppearance.BorderSize = 0;
+            btnXoaMH.Width = 100;
+            btnXoaMH.Height = 35;
+            btnXoaMH.Font = new Font("Arial", 10, FontStyle.Bold);
+
             // Đặt placeholder cho TextBox tìm kiếm
             txtTukhoa.Font = new Font("Arial", 10);
             txtTukhoa.PlaceholderText = "Nhập từ khóa...";
@@ -101,6 +109,42 @@ namespace Example
                 var mmh = dgvDSMH.CurrentRow.Cells["mamonhoc"].Value.ToString();
                 new LopHoc(mmh).ShowDialog();
                 LoadDSMH();
+            }
+        }
+
+        private void btnXoaMH_Click(object sender, EventArgs e)
+        {
+            if (dgvDSMH.CurrentRow != null)
+            {
+                var msv = dgvDSMH.CurrentRow.Cells["mamonhoc"].Value.ToString();
+
+                // Xác nhận xóa
+                var confirmResult = MessageBox.Show("Bạn có chắc muốn xóa môn học này?", "Xác nhận xóa", MessageBoxButtons.YesNo);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    List<CustomParameter> lstPara = new List<CustomParameter>
+                    {
+                        new CustomParameter() { key = "@mamonhoc", value = msv }
+                    };
+
+                    // Xóa sinh viên từ database
+                    var result = new Database().ExeCute("DeleteMonHoc", lstPara);
+
+                    if (result > 0)
+                    {
+                        MessageBox.Show("Xóa môn học thành công.");
+                        LoadDSMH();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xóa môn học thất bại.");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn môn học cần xóa.");
             }
         }
     }

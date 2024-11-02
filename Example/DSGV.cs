@@ -94,6 +94,14 @@ namespace Example
             btnSua.Height = 35;
             btnSua.Font = new Font("Arial", 10, FontStyle.Bold);
 
+            btnXoaGV.BackColor = Color.FromArgb(255, 80, 80);
+            btnXoaGV.ForeColor = Color.White;
+            btnXoaGV.FlatStyle = FlatStyle.Flat;
+            btnXoaGV.FlatAppearance.BorderSize = 0;
+            btnXoaGV.Width = 100;
+            btnXoaGV.Height = 35;
+            btnXoaGV.Font = new Font("Arial", 10, FontStyle.Bold);
+
             // Đặt placeholder cho TextBox tìm kiếm
             txtTukhoa.Font = new Font("Arial", 10);
             txtTukhoa.PlaceholderText = "Nhập từ khóa...";
@@ -114,6 +122,42 @@ namespace Example
                 var mgv = dgvDSGV.CurrentRow.Cells["magiaovien"].Value.ToString();
                 new GiaoVien(mgv).ShowDialog();
                 loadDSGV();
+            }
+        }
+
+        private void btnXoaGV_Click(object sender, EventArgs e)
+        {
+            if (dgvDSGV.CurrentRow != null)
+            {
+                var msv = dgvDSGV.CurrentRow.Cells["magiaovien"].Value.ToString();
+
+                // Xác nhận xóa
+                var confirmResult = MessageBox.Show("Bạn có chắc muốn xóa giáo viên này?", "Xác nhận xóa", MessageBoxButtons.YesNo);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    List<CustomParameter> lstPara = new List<CustomParameter>
+                    {
+                        new CustomParameter() { key = "@magiaovien", value = msv }
+                    };
+
+                    // Xóa sinh viên từ database
+                    var result = new Database().ExeCute("DeleteGiaoVien", lstPara);
+
+                    if (result > 0)
+                    {
+                        MessageBox.Show("Xóa giáo viên thành công.");
+                        loadDSGV();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xóa giáo viên thất bại.");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn giáo viên cần xóa.");
             }
         }
     }

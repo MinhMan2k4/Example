@@ -49,6 +49,7 @@ namespace Example
             CustomizeButton(btnThem, "Thêm mới");
             CustomizeButton(btnTimKiem, "Tìm kiếm");
             CustomizeButton(btnSua, "Sửa");
+            CustomizeButton(btnXoaLH, "Xoá");
 
             // Đặt placeholder cho TextBox tìm kiếm
             txtTimKiem.Font = new Font("Arial", 10);
@@ -106,6 +107,42 @@ namespace Example
                 var mlh = dgvLopHoc.CurrentRow.Cells["malophoc"].Value.ToString();
                 new LopHoc(mlh).ShowDialog();
                 loadDSLH();
+            }
+        }
+
+        private void btnXoaLH_Click(object sender, EventArgs e)
+        {
+            if (dgvLopHoc.CurrentRow != null)
+            {
+                var msv = dgvLopHoc.CurrentRow.Cells["malophoc"].Value.ToString();
+
+                // Xác nhận xóa
+                var confirmResult = MessageBox.Show("Bạn có chắc muốn xóa lớp học này?", "Xác nhận xóa", MessageBoxButtons.YesNo);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    List<CustomParameter> lstPara = new List<CustomParameter>
+                    {
+                        new CustomParameter() { key = "@malophoc", value = msv }
+                    };
+
+                    // Xóa sinh viên từ database
+                    var result = new Database().ExeCute("DeleteLopHoc", lstPara);
+
+                    if (result > 0)
+                    {
+                        MessageBox.Show("Xóa lớp học thành công.");
+                        loadDSLH();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xóa lớp học thất bại.");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn lớp học cần xóa.");
             }
         }
     }

@@ -34,6 +34,7 @@
             txtTukhoa = new TextBox();
             label1 = new Label();
             btnSua = new Button();
+            btnXoaMH = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvDSMH).BeginInit();
             SuspendLayout();
             // 
@@ -55,7 +56,7 @@
             // btnThemmoi
             // 
             btnThemmoi.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnThemmoi.Location = new Point(610, 29);
+            btnThemmoi.Location = new Point(513, 27);
             btnThemmoi.Name = "btnThemmoi";
             btnThemmoi.Size = new Size(75, 23);
             btnThemmoi.TabIndex = 12;
@@ -66,7 +67,7 @@
             // btnTimkiem
             // 
             btnTimkiem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnTimkiem.Location = new Point(505, 29);
+            btnTimkiem.Location = new Point(408, 27);
             btnTimkiem.Name = "btnTimkiem";
             btnTimkiem.Size = new Size(75, 23);
             btnTimkiem.TabIndex = 11;
@@ -77,7 +78,7 @@
             // txtTukhoa
             // 
             txtTukhoa.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            txtTukhoa.Location = new Point(335, 30);
+            txtTukhoa.Location = new Point(238, 28);
             txtTukhoa.Name = "txtTukhoa";
             txtTukhoa.Size = new Size(164, 23);
             txtTukhoa.TabIndex = 10;
@@ -86,7 +87,7 @@
             // 
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label1.AutoSize = true;
-            label1.Location = new Point(241, 38);
+            label1.Location = new Point(144, 36);
             label1.Name = "label1";
             label1.Size = new Size(49, 15);
             label1.TabIndex = 9;
@@ -95,7 +96,7 @@
             // btnSua
             // 
             btnSua.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnSua.Location = new Point(713, 29);
+            btnSua.Location = new Point(616, 27);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(75, 23);
             btnSua.TabIndex = 13;
@@ -103,11 +104,23 @@
             btnSua.UseVisualStyleBackColor = true;
             btnSua.Click += btnSua_Click;
             // 
+            // btnXoaMH
+            // 
+            btnXoaMH.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnXoaMH.Location = new Point(713, 27);
+            btnXoaMH.Name = "btnXoaMH";
+            btnXoaMH.Size = new Size(75, 23);
+            btnXoaMH.TabIndex = 14;
+            btnXoaMH.Text = "Xoá";
+            btnXoaMH.UseVisualStyleBackColor = true;
+            btnXoaMH.Click += btnXoaMH_Click;
+            // 
             // DSMH
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnXoaMH);
             Controls.Add(btnSua);
             Controls.Add(btnThemmoi);
             Controls.Add(btnTimkiem);
@@ -130,5 +143,6 @@
         private TextBox txtTukhoa;
         private Label label1;
         private Button btnSua;
+        private Button btnXoaMH;
     }
 }

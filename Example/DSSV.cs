@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace Example
 {
     public partial class DSSV : Form
@@ -67,6 +66,14 @@ namespace Example
             btnSuaSV.Height = 35;
             btnSuaSV.Font = new Font("Arial", 10, FontStyle.Bold);
 
+            btnXoaSV.BackColor = Color.FromArgb(255, 80, 80);
+            btnXoaSV.ForeColor = Color.White;
+            btnXoaSV.FlatStyle = FlatStyle.Flat;
+            btnXoaSV.FlatAppearance.BorderSize = 0;
+            btnXoaSV.Width = 100;
+            btnXoaSV.Height = 35;
+            btnXoaSV.Font = new Font("Arial", 10, FontStyle.Bold);
+
             // Đặt placeholder cho TextBox tìm kiếm
             txtTukhoa.Font = new Font("Arial", 10);
             txtTukhoa.PlaceholderText = "Nhập từ khóa...";
@@ -113,6 +120,42 @@ namespace Example
                 var msv = dgvSinhVien.CurrentRow.Cells["masinhvien"].Value.ToString();
                 new SinhVien(msv).ShowDialog();
                 LoadDSSV();
+            }
+        }
+
+        private void btnXoaSV_Click(object sender, EventArgs e)
+        {
+            if (dgvSinhVien.CurrentRow != null)
+            {
+                var msv = dgvSinhVien.CurrentRow.Cells["masinhvien"].Value.ToString();
+
+                // Xác nhận xóa
+                var confirmResult = MessageBox.Show("Bạn có chắc muốn xóa sinh viên này?", "Xác nhận xóa", MessageBoxButtons.YesNo);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    List<CustomParameter> lstPara = new List<CustomParameter>
+                    {
+                        new CustomParameter() { key = "@masinhvien", value = msv }
+                    };
+
+                    // Xóa sinh viên từ database
+                    var result = new Database().ExeCute("DeleteSinhVien", lstPara);
+
+                    if (result > 0)
+                    {
+                        MessageBox.Show("Xóa sinh viên thành công.");
+                        LoadDSSV();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xóa sinh viên thất bại.");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn sinh viên cần xóa.");
             }
         }
 

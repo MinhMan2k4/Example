@@ -34,13 +34,14 @@
             label1 = new Label();
             dgvDSGV = new DataGridView();
             btnSua = new Button();
+            btnXoaGV = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvDSGV).BeginInit();
             SuspendLayout();
             // 
             // btnThemmoi
             // 
             btnThemmoi.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnThemmoi.Location = new Point(595, 31);
+            btnThemmoi.Location = new Point(487, 25);
             btnThemmoi.Name = "btnThemmoi";
             btnThemmoi.Size = new Size(75, 23);
             btnThemmoi.TabIndex = 8;
@@ -51,7 +52,7 @@
             // btnTimkiem
             // 
             btnTimkiem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnTimkiem.Location = new Point(492, 31);
+            btnTimkiem.Location = new Point(384, 25);
             btnTimkiem.Name = "btnTimkiem";
             btnTimkiem.Size = new Size(75, 23);
             btnTimkiem.TabIndex = 7;
@@ -62,7 +63,7 @@
             // txtTukhoa
             // 
             txtTukhoa.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            txtTukhoa.Location = new Point(322, 32);
+            txtTukhoa.Location = new Point(214, 26);
             txtTukhoa.Name = "txtTukhoa";
             txtTukhoa.Size = new Size(164, 23);
             txtTukhoa.TabIndex = 6;
@@ -71,7 +72,7 @@
             // 
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label1.AutoSize = true;
-            label1.Location = new Point(226, 40);
+            label1.Location = new Point(118, 34);
             label1.Name = "label1";
             label1.Size = new Size(49, 15);
             label1.TabIndex = 5;
@@ -95,7 +96,7 @@
             // btnSua
             // 
             btnSua.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnSua.Location = new Point(697, 31);
+            btnSua.Location = new Point(589, 25);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(75, 23);
             btnSua.TabIndex = 10;
@@ -103,11 +104,23 @@
             btnSua.UseVisualStyleBackColor = true;
             btnSua.Click += btnSua_Click;
             // 
+            // btnXoaGV
+            // 
+            btnXoaGV.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnXoaGV.Location = new Point(689, 25);
+            btnXoaGV.Name = "btnXoaGV";
+            btnXoaGV.Size = new Size(75, 23);
+            btnXoaGV.TabIndex = 11;
+            btnXoaGV.Text = "Xoá";
+            btnXoaGV.UseVisualStyleBackColor = true;
+            btnXoaGV.Click += btnXoaGV_Click;
+            // 
             // DSGV
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnXoaGV);
             Controls.Add(btnSua);
             Controls.Add(dgvDSGV);
             Controls.Add(btnThemmoi);
@@ -131,5 +144,6 @@
         private Label label1;
         private DataGridView dgvDSGV;
         private Button btnSua;
+        private Button btnXoaGV;
     }
 }
